@@ -17,6 +17,7 @@ public class Main {
 
         // Manually register your resource
         rc.register(com.smartcampus.resources.HelloResource.class);
+        rc.register(com.smartcampus.resources.RoomResource.class);
 
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
