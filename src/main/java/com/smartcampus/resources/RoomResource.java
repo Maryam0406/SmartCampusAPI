@@ -8,7 +8,6 @@ import java.util.*;
 
 @Path("/api/v1/rooms")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class RoomResource {
 
     private static Map<String, Room> rooms = new HashMap<>();
@@ -21,6 +20,7 @@ public class RoomResource {
 
     // POST create room
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     public String createRoom(Room room) {
         rooms.put(room.getId(), room);
         return "Room created successfully";
