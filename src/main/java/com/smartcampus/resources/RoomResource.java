@@ -12,13 +12,13 @@ public class RoomResource {
 
     private static Map<String, Room> rooms = new HashMap<>();
 
-    // GET all rooms
+    // ✅ GET all rooms
     @GET
     public Collection<Room> getAllRooms() {
         return rooms.values();
     }
 
-    // POST create room
+    // ✅ POST create room
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public String createRoom(Room room) {
@@ -26,10 +26,28 @@ public class RoomResource {
         return "Room created successfully";
     }
 
-    // GET room by ID
+    // ✅ GET room by ID
     @GET
     @Path("/{id}")
     public Room getRoom(@PathParam("id") String id) {
         return rooms.get(id);
+    }
+
+    // ✅ DELETE room with validation
+    @DELETE
+    @Path("/{id}")
+    public String deleteRoom(@PathParam("id") String id) {
+        Room room = rooms.get(id);
+
+        if (room == null) {
+            return "Room not found";
+        }
+
+        if (!room.getSensorIds().isEmpty()) {
+            return "Cannot delete room with sensors";
+        }
+
+        rooms.remove(id);
+        return "Room deleted successfully";
     }
 }
