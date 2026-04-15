@@ -9,13 +9,11 @@ import java.net.URI;
 
 public class Main {
 
-    // Updated base URI (includes /api/v1)
-    public static final String BASE_URI = "http://localhost:8080/api/v1/";
+    public static final String BASE_URI = "http://localhost:8080/";
 
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig();
 
-        // Manually register your resource
         rc.register(com.smartcampus.resources.HelloResource.class);
         rc.register(com.smartcampus.resources.RoomResource.class);
 
@@ -25,7 +23,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         final HttpServer server = startServer();
         System.out.println("Server running at " + BASE_URI);
-        System.in.read(); // keeps server running
+        System.in.read();
         server.shutdownNow();
     }
 }
